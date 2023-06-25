@@ -1,5 +1,7 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+//引入仓库
+// import { createPinia } from 'pinia'
+import pinia from './store'
 
 // import './styles/main.scss'
 import './styles/index.scss'
@@ -9,7 +11,7 @@ import router from './router'
 
 const app = createApp(App)
 
-app.use(createPinia())
+app.use(pinia)
 app.use(router)
 
 app.mount('#app')

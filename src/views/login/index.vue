@@ -10,17 +10,23 @@
           <h2 class="login_title">欢迎登录</h2>
           <el-form class="login_pass">
             <el-form-item>
-              <el-input v-model="name" :prefix-icon="User"></el-input>
+              <el-input v-model="loginForm.userName" :prefix-icon="User">{{
+                name
+              }}</el-input>
             </el-form-item>
             <el-form-item>
               <el-input
                 type="password"
-                v-model="password"
+                v-model="loginForm.password"
                 :prefix-icon="Lock"
                 :suffix-icon="Hide"
               ></el-input>
             </el-form-item>
-            <el-button type="primary" style="width: 100%" :prefix-icon="Warning"
+            <el-button
+              type="primary"
+              style="width: 100%"
+              :prefix-icon="Warning"
+              @click="login"
               >登录</el-button
             >
           </el-form>
@@ -31,15 +37,21 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import { User, Lock, Warning, Hide } from '@element-plus/icons-vue'
+import userUsersStore from '@/store/modules/user'
 
+let userStore = userUsersStore()
 const name = ref('admin')
-const password = ref(123456)
-// const loginForm = reactive({
-//   userName: 'admin',
-//   password: '123456'
-// })
+// const password = ref(123456)
+const loginForm = reactive({
+  userName: 'admin',
+  password: '123456'
+})
+// 登录
+const login = () => {
+  userStore.userLogin(loginForm)
+}
 </script>
 <style scoped scss>
 .login-container {
