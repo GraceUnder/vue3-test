@@ -8,7 +8,8 @@
       <!-- 滚动组件 -->
       <el-scrollbar class="scrollbar">
         <el-menu background-color="#001529" text-color="white">
-          <!-- <el-menu-item index="1">首页</el-menu-item>
+          <!-- <div>
+            <el-menu-item index="1">首页</el-menu-item>
           <el-menu-item index="2">快递管理</el-menu-item>
           <el-menu-item index="3">快递员管理</el-menu-item>
           <el-sub-menu index="4">
@@ -20,8 +21,10 @@
           <el-menu-item index="6">驿站管理列表</el-menu-item>
           <el-menu-item index="7">数据统计管理列表</el-menu-item>
           <el-menu-item index="8">提现记录列表</el-menu-item>
-          <el-menu-item index="9">售后服务</el-menu-item> -->
-          <Menu></Menu>
+          <el-menu-item index="9">售后服务</el-menu-item> 
+          </div> -->
+
+          <Menu :menu_list="userStore.menuRoutes"></Menu>
         </el-menu>
       </el-scrollbar>
     </div>
@@ -35,6 +38,9 @@
 <script lang="ts" setup>
 import Logo from './logo/index.vue'
 import Menu from './menu/index.vue'
+//引入用户相关的小仓库
+import userUsersStore from '@/store/modules/user'
+let userStore = userUsersStore()
 </script>
 <style scoped lang="scss">
 .layout_container {
@@ -49,17 +55,20 @@ import Menu from './menu/index.vue'
     .scrollbar {
       width: 100%;
       height: calc(100vh - $base-menu-logo-height);
-      .scrollbar-demo-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 50px;
-        margin: 10px;
-        text-align: center;
-        border-radius: 4px;
-        background: var(--el-color-primary-light-9);
-        color: var(--el-color-primary);
+      .el-menu {
+        border-right: none;
       }
+      // .scrollbar-demo-item {
+      //   display: flex;
+      //   align-items: center;
+      //   justify-content: center;
+      //   height: 50px;
+      //   margin: 10px;
+      //   text-align: center;
+      //   border-radius: 4px;
+      //   background: var(--el-color-primary-light-9);
+      //   color: var(--el-color-primary);
+      // }
     }
   }
   .layout_tabbar {
