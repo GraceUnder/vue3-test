@@ -31,7 +31,15 @@
     <!-- 导航栏 -->
     <div class="layout_tabbar">456</div>
     <!-- 内容展示 -->
-    <div class="layout_main">789</div>
+    <div class="layout_main">
+      789
+      <svg aria-hidden="true">
+        <!-- #icon-文件夹名称-图片名称 -->
+        <use href="#icon-delete" />
+      </svg>
+      <SvgIcon color="red" width="30px"></SvgIcon>
+      哈哈
+    </div>
   </div>
 </template>
 
