@@ -10,7 +10,8 @@ import 'virtual:svg-icons-register'
 
 //自定义插件对象:注册整个项目的全局组件
 import globalComponent from '@/components'
-
+// 引入elMassage样式
+import 'element-plus/theme-chalk/el-message.css'
 // 引入全局样式
 // import './styles/main.scss'
 import './styles/index.scss'

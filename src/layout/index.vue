@@ -44,11 +44,34 @@
 </template>
 
 <script lang="ts" setup>
+import { onMounted } from 'vue'
 import Logo from './logo/index.vue'
 import Menu from './menu/index.vue'
 //引入用户相关的小仓库
 import userUsersStore from '@/store/modules/user'
+
+//测试request
+import request from '@/utils/request'
+import { ElMessage } from 'element-plus'
 let userStore = userUsersStore()
+let message = '这是测试错误'
+onMounted(() => {
+  ElMessage({
+    type: 'error',
+    message
+  })
+  console.log(message)
+  request({
+    method: 'post',
+    url: '/api/user/login',
+    data: {
+      username: 'admin',
+      password: '123456'
+    }
+  }).then((res) => {
+    console.log(res)
+  })
+})
 </script>
 <style scoped lang="scss">
 .layout_container {
