@@ -10,7 +10,9 @@ module.exports = {
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/eslint-config-typescript',
-    '@vue/eslint-config-prettier/skip-formatting'
+    '@vue/eslint-config-prettier/skip-formatting',
+    //解决API未引入的错误的问题
+    // './.eslintrc-auto-import.json' // 这一行
   ],
   parserOptions: {
     ecmaVersion: 'latest'

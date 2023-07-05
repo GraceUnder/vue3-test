@@ -10,7 +10,7 @@
           <h2 class="login_title">欢迎登录</h2>
           <el-form class="login_pass">
             <el-form-item>
-              <el-input v-model="loginForm.userName" :prefix-icon="User">{{
+              <el-input v-model="loginForm.username" :prefix-icon="User">{{
                 name
               }}</el-input>
             </el-form-item>
@@ -39,18 +39,37 @@
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
 import { User, Lock, Warning, Hide } from '@element-plus/icons-vue'
+//引入相关的小仓库
 import userUsersStore from '@/store/modules/user'
-
+import { useRouter } from 'vue-router'
+import { ElNotification } from 'element-plus'
 let userStore = userUsersStore()
 const name = ref('admin')
-// const password = ref(123456)
+let $router = useRouter()
 const loginForm = reactive({
-  userName: 'admin',
-  password: '123456'
+  username: 'admin',
+  password: '1234563'
 })
 // 登录
-const login = () => {
-  userStore.userLogin(loginForm)
+const login = async () => {
+  // console.log(loginForm)
+  // 调用仓库的里的登录方法
+  try {
+    await userStore.userLogin(loginForm)
+    //登录成功后跳转
+    $router.push('/')
+    ElNotification({
+      type: 'success',
+      message: '登录成功'
+    })
+  } catch (error) {
+    console.log(error)
+    ElNotification({
+      type: 'error',
+      //类型断言为error
+      message: (error as Error).message
+    })
+  }
 }
 </script>
 <style scoped scss>

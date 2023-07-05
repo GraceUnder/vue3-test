@@ -11,14 +11,17 @@ export interface LoginFormData {
   password?: string
 }
 
+//登录信息  返回的data数据
 export interface ResponseData {
-  code?: number
+  // code?: number
+  token: string
   message?: string
   ok?: boolean
 }
 
 export interface LoginResponseData extends ResponseData {
-  data?: string
+  code?: number
+  data?: ResponseData
 }
 
 export interface userInfoResponseData extends ResponseData {
