@@ -36,7 +36,7 @@ const userUsersStore = defineStore('User', {
       } else {
         //接受返回数据的message
         const message = result.data?.message
-        console.log(message)
+        // console.log(message)
         return Promise.reject(new Error(message))
         // 使用错误提示ui
         // ElMessage({
