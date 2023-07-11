@@ -32,13 +32,14 @@
     <div class="layout_tabbar">456</div>
     <!-- 内容展示 -->
     <div class="layout_main">
-      789
+      <!-- <router-view></router-view> -->
+      <Main></Main>
       <svg aria-hidden="true">
         <!-- #icon-文件夹名称-图片名称 -->
         <use href="#icon-delete" />
       </svg>
-      <SvgIcon color="red" width="30px"></SvgIcon>
-      哈哈
+      <SvgIcon color="red" width="30px" name="delete"></SvgIcon>
+      <SvgIcon name="plus"></SvgIcon>
     </div>
   </div>
 </template>
@@ -47,6 +48,7 @@
 import { onMounted } from 'vue'
 import Logo from './logo/index.vue'
 import Menu from './menu/index.vue'
+import Main from './main/index.vue'
 //引入用户相关的小仓库
 import userUsersStore from '@/store/modules/user'
 import { reqLogin } from '@/api/user'

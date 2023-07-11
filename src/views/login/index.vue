@@ -8,13 +8,19 @@
         <el-card class="login_form">
           <h1 class="login_title">Hello</h1>
           <h2 class="login_title">欢迎登录</h2>
-          <el-form class="login_pass">
-            <el-form-item>
-              <el-input v-model="loginForm.username" :prefix-icon="User">{{
-                name
-              }}</el-input>
+          <el-form
+            class="login_pass"
+            ref="ruleFormRef"
+            :rules="rules"
+            :model="loginForm"
+          >
+            <el-form-item prop="username">
+              <el-input
+                v-model="loginForm.username"
+                :prefix-icon="User"
+              ></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item prop="password">
               <el-input
                 :type="passwordShow ? 'text' : 'password'"
                 v-model="loginForm.password"
@@ -56,9 +62,8 @@ import { getTime } from '@/utils/getTime'
 
 //引入路由
 import { useRouter } from 'vue-router'
-import { ElNotification } from 'element-plus'
+import { ElNotification, type FormInstance } from 'element-plus'
 let userStore = userUsersStore()
-const name = ref('admin')
 
 //是否展示密码
 let passwordShow = ref(false)
@@ -66,10 +71,42 @@ let passwordShow = ref(false)
 //定义登录按钮的加载
 let loading = ref(false)
 let $router = useRouter()
+//登录表单初始数据
 const loginForm = reactive({
   username: 'admin',
   password: '123456'
 })
+//=======表单验证
+//表单实例
+const ruleFormRef = ref<FormInstance>()
+
+const validateUsername = (rule: any, value: any, callback: any) => {
+  //rule校验对象
+  //value:表单的文本内容
+  //callback校验是否通过执行的函数 校验通过则执行这个函数 不通过则返回一个错误对象
+  if (value === '') {
+    callback(new Error('用户名不能为空'))
+  } else if (value.length < 5 || value.length > 8) {
+    callback(new Error('用户名长度不能小于5不能大于8'))
+  } else {
+    callback()
+  }
+}
+const validatePass = (rule: any, value: any, callback: any) => {
+  if (value === '') {
+    callback(new Error('密码不能为空'))
+  } else if (value.length < 5 || value.length > 8) {
+    callback(new Error('密码长度为5-8位'))
+  } else {
+    callback()
+  }
+}
+
+const rules = {
+  username: [{ validator: validateUsername, trigger: 'change' }],
+  password: [{ validator: validatePass, trigger: 'blur' }]
+}
+
 // 登录
 const login = async () => {
   // console.log(loginForm)

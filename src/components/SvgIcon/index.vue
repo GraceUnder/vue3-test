@@ -2,7 +2,7 @@
   <!-- svg组件 -->
   <svg aria-hidden="true" :style="{ width, height }">
     <!-- #icon-文件夹名称-图片名称 -->
-    <use :href="prefix + 'delete'" :fill="color" />
+    <use :href="prefix + `${name}`" :fill="color" />
   </svg>
 </template>
 
