@@ -84,7 +84,7 @@ export const constantRouter = [
     component: () => import('@/views/screen/index.vue'),
     name: 'screen', //命名路由
     meta: {
-      title: '权限管理', //登录标题
+      title: '大屏数据', //登录标题
       hidden: false,
       icon: 'Lock'
     }

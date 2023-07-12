@@ -7,7 +7,11 @@
       <!-- 展示菜单 -->
       <!-- 滚动组件 -->
       <el-scrollbar class="scrollbar">
-        <el-menu background-color="#001529" text-color="white">
+        <el-menu
+          background-color="#001529"
+          text-color="white"
+          :default-active="$route.path"
+        >
           <!-- <div>
             <el-menu-item index="1">首页</el-menu-item>
           <el-menu-item index="2">快递管理</el-menu-item>
@@ -29,29 +33,40 @@
       </el-scrollbar>
     </div>
     <!-- 导航栏 -->
-    <div class="layout_tabbar">456</div>
+    <div class="layout_tabbar">
+      <tabbar></tabbar>
+    </div>
     <!-- 内容展示 -->
     <div class="layout_main">
       <!-- <router-view></router-view> -->
       <Main></Main>
-      <svg aria-hidden="true">
-        <!-- #icon-文件夹名称-图片名称 -->
-        <use href="#icon-delete" />
+      <!-- <svg aria-hidden="true"> -->
+      <!-- #icon-文件夹名称-图片名称 -->
+      <!-- <use href="#icon-delete" />
       </svg>
       <SvgIcon color="red" width="30px" name="delete"></SvgIcon>
-      <SvgIcon name="plus"></SvgIcon>
+      <SvgIcon name="plus"></SvgIcon> -->
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { onMounted } from 'vue'
+//引入logo组件
 import Logo from './logo/index.vue'
+// 引入菜单组件
 import Menu from './menu/index.vue'
+//引入右侧展示区组件
 import Main from './main/index.vue'
+// 引入顶部导航栏组件
+import tabbar from './tabbar/index.vue'
 //引入用户相关的小仓库
 import userUsersStore from '@/store/modules/user'
 import { reqLogin } from '@/api/user'
+import { useRoute } from 'vue-router'
+
+// 获取路由实例
+let $route = useRoute()
 
 //测试request
 // import request from '@/utils/request'
@@ -77,7 +92,7 @@ onMounted(() => {
   width: 100%;
   height: 100vh;
   // background-color: blue($color: #000000);
-  background-color: skyblue;
+  // background-color: skyblue;
   .layout_slider {
     width: $base-menu-width;
     height: 100vh;
@@ -105,7 +120,6 @@ onMounted(() => {
     position: fixed;
     width: calc(100% - $base-menu-width);
     height: $base-tabbar-height;
-    background-color: #d2f319;
     top: 0;
     right: 0;
   }
